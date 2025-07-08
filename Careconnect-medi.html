@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care Connect - Your Health Companion</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #98F5E1;
+            --mint-green: #B8EFCF;
+            --turkish-blue: #3CA6A6;
+            --teal-blue: #2C8C99;
+            --light-misty: #E9F9F1;
+            --pale-aqua: #D4F0F7;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--light-misty) 0%, var(--pale-aqua) 100%);
+            min-height: 100vh;
+        }
+
+        /* Typography */
+        h1 { font-size: 36px; font-weight: 700; }
+        h2 { font-size: 28px; font-weight: 600; }
+        p, .btn, label { font-size: 16px; }
+
+        /* Header */
+        .navbar {
+            background: white !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--teal-blue) !important;
+            font-size: 28px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-green);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: var(--teal-blue);
+            font-size: 24px;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 600;
+            color: #333 !important;
+            margin: 0 10px;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--turkish-blue) !important;
+        }
+
+        .btn-login {
+            background: var(--turkish-blue);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+        }
+
+        .btn-login:hover {
+            background: var(--teal-blue);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--mint-green) 100%);
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: var(--teal-blue);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+    font-size: 18px;
+    color: #1A0E0E;
+    margin-bottom: 30px;
+        }
+
+        .btn-primary-custom {
+            background: var(--turkish-blue);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 18px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background: var(--teal-blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--turkish-blue);
+            color: var(--turkish-blue);
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 18px;
+            margin: 10px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--turkish-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Emergency Numbers */
+        .emergency-section {
+            background: #ff6b6b;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .emergency-number {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 20px;
+        }
+
+        /* Service Cards */
+        .services {
+            padding: 80px 0;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            color: var(--turkish-blue);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: var(--teal-blue);
+            margin-bottom: 15px;
+        }
+
+        /* Forms */
+        .form-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            margin-bottom: 20px;
+        }
+
+        .form-control:focus {
+            border-color: var(--turkish-blue);
+            box-shadow: 0 0 0 0.2rem rgba(60, 166, 166, 0.25);
+        }
+
+        /* Doctor Cards */
+        .doctor-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .doctor-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: var(--teal-blue);
+        }
+
+        .btn-contact {
+            background: var(--turkish-blue);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 14px;
+        }
+
+        .btn-contact:hover {
+            background: var(--teal-blue);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--teal-blue);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin: 20px 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .footer-credit {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 28px; }
+            .hero p { font-size: 16px; }
+            .btn-primary-custom, .btn-outline-custom { font-size: 16px; padding: 12px 25px; }
+            .emergency-number { font-size: 20px; margin: 10px 0; }
+        }
+    body,td,th {
+    font-family: Poppins, sans-serif;
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <img src="Asset 1.png" width="53" height="56" alt=""/><a class="navbar-brand" href="#home">
+                
+                    
+                </span>
+            &nbsp;Care Connect </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home"><center>🏠</center>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#symptom-checker"><center>🩺</center>SymptomChecker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#first-aid"><center>✙</center>FirstAid</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#doctors"><center>👩🏻‍⚕️</center>FindDoctors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact"><center>☎️</center>Contact</a>
+                    </li>
+                </ul>
+                <button class="btn btn-login ms-3">
+                    <i class="bi bi-person-circle"></i> Login
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Emergency Numbers Bar -->
+    <div class="emergency-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <strong>Emergency Numbers:</strong>
+                    <span class="emergency-number">
+                        <i class="bi bi-telephone"></i> 119
+                    </span>
+                    <span class="emergency-number">
+                        <i class="bi bi-hospital"></i> 1990
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1>Your Health Companion!</h1>
+                  <p>Get instant medical guidance, check symptoms, learn first aid, and connect with verified doctors near you. Care Connect is here for you 24/7.</p>
+                    <div class="mt-4">
+                        <a href="#symptom-checker" class="btn btn-primary-custom">
+                            <i class="bi bi-search"></i> Check Symptoms
+                        </a>
+                    <a href="#first-aid" class="btn btn-outline-custom"> <em class="bi bi-heart-pulse"></em> First Aid Guide </a> </div>
+              </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2>Our Services</h2>
+                    <p>Comprehensive healthcare solutions at your fingertips</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-clipboard2-pulse"></i>
+                        </div>
+                        <h3>Symptom Checker</h3>
+                        <p>AI-powered symptom analysis to help identify potential health issues and guide you to appropriate care.</p>
+                        <a href="#symptom-checker" class="btn btn-primary-custom">Try Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-bandaid"></i>
+                        </div>
+                        <h3>First Aid Guide</h3>
+                        <p>Step-by-step first aid instructions and video tutorials for common emergency situations.</p>
+                        <a href="#first-aid" class="btn btn-primary-custom">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-person-hearts"></i>
+                        </div>
+                        <h3>Find Doctors</h3>
+                        <p>Connect with verified healthcare professionals in your area for consultations and appointments.</p>
+                        <a href="#doctors" class="btn btn-primary-custom">Find Doctors</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Symptom Checker Page -->
+    <section id="symptom-checker" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="form-section">
+                        <h2 class="text-center mb-4">
+                            <i class="bi bi-clipboard2-pulse text-primary"></i> Symptom Checker
+                        </h2>
+                        <p class="text-center mb-4">Describe your symptoms and get AI-powered health insights</p>
+                        
+                        <form>
+                            <div class="mb-3">
+                                <label for="symptoms" class="form-label">Describe your symptoms:</label>
+                                <textarea class="form-control" id="symptoms" rows="4" placeholder="e.g., headache, fever, cough, fatigue..."></textarea>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="age" class="form-label">Age:</label>
+                                    <input type="number" class="form-control" id="age" placeholder="Enter your age">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="gender" class="form-label">Gender:</label>
+                                    <select class="form-control" id="gender">
+                                        <option value="">Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary-custom">
+                                    <i class="bi bi-search"></i> Analyze Symptoms
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <!-- Results Section -->
+                        <div class="mt-5 p-4 bg-light rounded">
+                            <h4>Common Symptoms Analysis</h4>
+                            <div class="row mt-3">
+                                <div class="col-md-4">
+                                    <div class="alert alert-info">
+                                        <strong>Possible Condition:</strong><br>
+                                        Common Cold
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="alert alert-warning">
+                                        <strong>Severity:</strong><br>
+                                        Mild to Moderate
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="alert alert-success">
+                                        <strong>Recommendation:</strong><br>
+                                        Rest & Hydration
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- First Aid Page -->
+    <section id="first-aid" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2>
+                        <i class="bi bi-bandaid text-primary"></i> First Aid Guide
+                    </h2>
+                    <p>Learn essential first aid techniques for common emergencies</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-heart-pulse"></i>
+                        </div>
+                        <h4>CPR</h4>
+                        <p>Cardiopulmonary resuscitation steps for cardiac emergencies</p>
+                        <button class="btn btn-primary-custom">View Guide</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-droplet"></i>
+                        </div>
+                        <h4>Bleeding Control</h4>
+                        <p>How to stop bleeding and treat wounds effectively</p>
+                        <button class="btn btn-primary-custom">View Guide</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-thermometer-half"></i>
+                        </div>
+                        <h4>Burns Treatment</h4>
+                        <p>First aid for minor and major burn injuries</p>
+                        <button class="btn btn-primary-custom">View Guide</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-lungs"></i>
+                        </div>
+                        <h4>Choking</h4>
+                        <p>Heimlich maneuver and choking response techniques</p>
+                        <button class="btn btn-primary-custom">View Guide</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-activity"></i>
+                        </div>
+                        <h4>Fractures</h4>
+                        <p>How to handle suspected bone fractures and sprains</p>
+                        <button class="btn btn-primary-custom">View Guide</button>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h4>Poisoning</h4>
+                        <p>Emergency response for poisoning incidents</p>
+                        <button class="btn btn-primary-custom">View Guide</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Find Doctors Page -->
+    <section id="doctors" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2>
+                        <i class="bi bi-person-hearts text-primary"></i> Find Doctors Near You
+                    </h2>
+                    <p>Connect with verified healthcare professionals in your area</p>
+                </div>
+            </div>
+            
+            <!-- Search Form -->
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="form-section">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Enter your location">
+                                </div>
+                                <div class="col-md-4">
+                                    <select class="form-control">
+                                        <option value="">Select Specialty</option>
+                                        <option value="general">General Practitioner</option>
+                                        <option value="cardiology">Cardiology</option>
+                                        <option value="pediatrics">Pediatrics</option>
+                                        <option value="orthopedics">Orthopedics</option>
+                                        <option value="dermatology">Dermatology</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary-custom w-100">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Doctor Cards -->
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="doctor-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <div class="doctor-avatar">
+                                    <i class="bi bi-person"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Dr. Sarah Johnson</h5>
+                                <p class="mb-1"><strong>General Practitioner</strong></p>
+                                <p class="mb-1"><i class="bi bi-geo-alt"></i> Colombo Medical Center</p>
+                                <p class="mb-1"><i class="bi bi-star-fill text-warning"></i> 4.8 (127 reviews)</p>
+                                <p class="mb-1"><i class="bi bi-clock"></i> Available: 9 AM - 5 PM</p>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-contact">
+                                    <i class="bi bi-telephone"></i> Call
+                                </button>
+                                <button class="btn btn-contact">
+                                    <i class="bi bi-chat-dots"></i> Chat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="doctor-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <div class="doctor-avatar">
+                                    <i class="bi bi-person"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Dr. Michael Chen</h5>
+                                <p class="mb-1"><strong>Cardiologist</strong></p>
+                                <p class="mb-1"><i class="bi bi-geo-alt"></i> Heart Care Hospital</p>
+                                <p class="mb-1"><i class="bi bi-star-fill text-warning"></i> 4.9 (89 reviews)</p>
+                                <p class="mb-1"><i class="bi bi-clock"></i> Available: 10 AM - 6 PM</p>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-contact">
+                                    <i class="bi bi-telephone"></i> Call
+                                </button>
+                                <button class="btn btn-contact">
+                                    <i class="bi bi-chat-dots"></i> Chat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="doctor-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <div class="doctor-avatar">
+                                    <i class="bi bi-person"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Dr. Priya Patel</h5>
+                                <p class="mb-1"><strong>Pediatrician</strong></p>
+                                <p class="mb-1"><i class="bi bi-geo-alt"></i> Children's Clinic</p>
+                                <p class="mb-1"><i class="bi bi-star-fill text-warning"></i> 4.7 (156 reviews)</p>
+                                <p class="mb-1"><i class="bi bi-clock"></i> Available: 8 AM - 4 PM</p>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-contact">
+                                    <i class="bi bi-telephone"></i> Call
+                                </button>
+                                <button class="btn btn-contact">
+                                    <i class="bi bi-chat-dots"></i> Chat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="doctor-card">
+                        <div class="row align-items-center">
+                            <div class="col-md-3">
+                                <div class="doctor-avatar">
+                                    <i class="bi bi-person"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Dr. David Wilson</h5>
+                                <p class="mb-1"><strong>Orthopedic Surgeon</strong></p>
+                                <p class="mb-1"><i class="bi bi-geo-alt"></i> Bone & Joint Center</p>
+                                <p class="mb-1"><i class="bi bi-star-fill text-warning"></i> 4.6 (92 reviews)</p>
+                                <p class="mb-1"><i class="bi bi-clock"></i> Available: 7 AM - 3 PM</p>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-contact">
+                                    <i class="bi bi-telephone"></i> Call
+                                </button>
+                                <button class="btn btn-contact">
+                                    <i class="bi bi-chat-dots"></i> Chat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Support Page -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2>
+                        <i class="bi bi-envelope-heart text-primary"></i> Contact & Support
+                    </h2>
+                    <p>Get help when you need it most</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-section">
+                        <h4>Contact Form</h4>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-control" required>
+                                    <option value="">Select Issue Type</option>
+                                    <option value="technical">Technical Support</option>
+                                    <option value="medical">Medical Inquiry</option>
+                                    <option value="billing">Billing Question</option>
+                                    <option value="feedback">Feedback</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom">
+                                <i class="bi bi-send"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+<div class="form-section">
+                        <h4>Frequently Asked Questions</h4>
+                        <div class="accordion" id="faqAccordion"
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        How accurate is the symptom checker?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Our symptom checker uses advanced AI algorithms but should not replace professional medical advice. Always consult a healthcare provider for serious concerns.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        Is my health data secure?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes, we use industry-standard encryption and follow strict privacy policies to protect your health information.
